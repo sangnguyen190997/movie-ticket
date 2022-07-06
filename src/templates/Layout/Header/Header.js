@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { history } from "../../../App";
-import { Select } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Select, Button, Modal } from "antd";
+import { UserOutlined, DownOutlined, RightOutlined } from "@ant-design/icons";
 
 //Hook đa ngôn ngữ
 // import { useTranslation } from "react-i18next";
@@ -141,6 +141,102 @@ export default function Header() {
     );
   };
 
+  const App = () => {
+    const [modalVisible, setModalVisible] = useState(false);
+
+    return (
+      <>
+        <Button
+          style={{ background: "transparent", color: "white", border: "none" }}
+          onClick={() => setModalVisible(true)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6 dark:text-coolGray-100"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </Button>
+
+        <Modal
+          style={{ top: 70, right: "-36%" }}
+          visible={modalVisible}
+          onOk={() => setModalVisible(false)}
+          onCancel={() => setModalVisible(false)}
+          footer={null}
+          width={150}
+          closeIcon={<RightOutlined />}
+        >
+          <section>
+            <button
+              onClick={() => {
+                history.push("/profile");
+              }}
+            >
+              <div className="flex justify-start items-center">
+                <span
+                  style={{
+                    width: 40,
+                    height: 40,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  className="text-xl ml-2 m-2 rounded-full bg-indigo-200"
+                >
+                  {userLogin.taiKhoan.substr(0, 1)}
+                </span>
+                <span className="justify-center align-middle text-black font-medium">
+                  {userLogin.taiKhoan}
+                </span>
+              </div>
+            </button>
+          </section>
+
+          <a
+            href="#lichChieu"
+            className="flex items-center px-4 -mb-1 dark:border-transparent text-black font-medium py-3"
+            activeclassname="border-b-0"
+          >
+            Lịch Chiếu
+          </a>
+          <a
+            href="#news"
+            className="flex items-center px-4 -mb-1 dark:border-transparent text-black font-medium py-3"
+            activeclassname="border-b-0"
+          >
+            Tin Tức
+          </a>
+          <a
+            href="#appHome"
+            className="flex items-center px-4 -mb-1 dark:border-transparent text-black font-medium py-3"
+            activeclassname="border-b-0"
+          >
+            Ứng Dụng
+          </a>
+          <a
+            onClick={() => {
+              localStorage.removeItem("userLogin");
+              localStorage.removeItem("accessToken");
+              history.push("/home");
+              window.location.reload();
+            }}
+            className="flex items-center px-4 -mb-1 dark:border-transparent text-black font-medium py-3"
+          >
+            Đăng xuất
+          </a>
+        </Modal>
+      </>
+    );
+  };
   return (
     <div>
       <header className="p-4 bg-coolGray-800 text-coolGray-100 bg-opacity-40 bg-black text-white fixed w-full z-10">
@@ -171,15 +267,6 @@ export default function Header() {
               </NavLink>
             </li>
             <li className="flex">
-              {/* <NavLink
-                rel="noopener noreferrer"
-                to="/lichChieu"
-                className="flex items-center px-4 -mb-1 dark:border-transparent text-white"
-                activeClassName="border-b-2"
-              >
-                Lịch Chiếu
-              </NavLink> */}
-
               <a
                 href="#lichChieu"
                 className="flex items-center px-4 -mb-1 dark:border-transparent text-white"
@@ -189,14 +276,6 @@ export default function Header() {
               </a>
             </li>
             <li className="flex">
-              {/* <NavLink
-                rel="noopener noreferrer"
-                to="/news"
-                className="flex items-center px-4 -mb-1 dark:border-transparent text-white"
-                activeClassName="border-b-2"
-              >
-                Tin Tức
-              </NavLink> */}
               <a
                 href="#news"
                 className="flex items-center px-4 -mb-1 dark:border-transparent text-white"
@@ -206,14 +285,6 @@ export default function Header() {
               </a>
             </li>
             <li className="flex">
-              {/* <NavLink
-                rel="noopener noreferrer"
-                to="/news"
-                className="flex items-center px-4 -mb-1 dark:border-transparent text-white"
-                activeClassName="border-b-2"
-              >
-                Ứng Dụng
-              </NavLink> */}
               <a
                 href="#appHome"
                 className="flex items-center px-4 -mb-1 dark:border-transparent text-white"
@@ -236,9 +307,8 @@ export default function Header() {
               <Option value="vi">Vi</Option>
             </Select> */}
           </div>
-
-          <button className="p-4 lg:hidden">
-            <svg
+          <button className="p-4 lg:hidden" type="button">
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -251,7 +321,8 @@ export default function Header() {
                 strokeWidth={2}
                 d="M4 6h16M4 12h16M4 18h16"
               />
-            </svg>
+            </svg> */}
+            <App />
           </button>
         </div>
       </header>

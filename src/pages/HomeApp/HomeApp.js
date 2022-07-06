@@ -17,8 +17,8 @@ export default function HomeApp() {
         <div className="jss117">
           <div className="row">
             <div>
-              <p className="jss120">Ứng dụng tiện lợi dành cho</p>
-              <p className="jss120">người yêu điện ảnh</p>
+              <p className="jss120 sm:text-sm">Ứng dụng tiện lợi dành cho</p>
+              <p className="jss120 sm:text-sm">người yêu điện ảnh</p>
 
               <p>
                 Không chỉ đặt vé, bạn còn có thể bình luận phim, chấm điểm
@@ -47,8 +47,8 @@ export default function HomeApp() {
                 </span>
               </p>
             </div>
-            <div>
-              <div className="jss122">
+            <section>
+              <div className="jss122 sm:w-9/12 md:w-full lg:w-full">
                 <img
                   className="jss123"
                   src="/img/mobile/mobile.png"
@@ -99,7 +99,7 @@ export default function HomeApp() {
                   </div>
                 </Slider>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </div>

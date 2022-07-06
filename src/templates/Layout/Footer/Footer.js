@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
           <div className="col-span-6 text-center md:text-left md:col-span-4 text-white">
             <p className="pb-1 text-lg font-medium">Mobile app</p>
-            <div className="flex text-white">
+            <div className="flex text-white sm:justify-center">
               <div className="mr-5">
                 <AppleOutlined className="text-2xl" />
               </div>

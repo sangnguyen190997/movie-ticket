@@ -40,18 +40,19 @@ export default function Detail(props) {
           <div className="col-span-5 col-start-3">
             <div className="grid grid-cols-3">
               <img
-                className="col-span-1"
+                className="col-span-1 w-full h-80 sm:h-5/6"
                 src={filmDetail.hinhAnh}
-                style={{ width: "100%", height: 300 }}
                 alt="123"
               />
-              <div className="col-span-2 ml-5" style={{ marginTop: "25%" }}>
+              <div className="col-span-2 ml-5">
                 <p className="text-sm ">
                   Ngày Chiếu :{" "}
                   {moment(filmDetail.ngayKhoiChieu).format("DD.MM.YY")}
                 </p>
-                <p className="text-4xl leading-3">{filmDetail.tenPhim}</p>
-                <p>{filmDetail.moTa}</p>
+                <p className="text-4xl lg:text-2xl md:text-xl sm:text-lg leading-3">
+                  {filmDetail.tenPhim}
+                </p>
+                <p className="">{filmDetail.moTa}</p>
               </div>
             </div>
           </div>
@@ -85,7 +86,10 @@ export default function Detail(props) {
             </div>
           </div>
         </div>
-        <div className="mt-20 ml-72 w-2/3 container mx-auto bg-white px-5 py-5">
+        <div
+          style={{ margin: "auto" }}
+          className="lg:w-3/5 mt-20 ml-72 w-2/3 bg-white px-5 py-5"
+        >
           <Tabs defaultActiveKey="1" centered>
             <TabPane tab="Lịch Chiếu" key="1" style={{ minHeight: 300 }}>
               <div>
@@ -114,7 +118,7 @@ export default function Detail(props) {
                               <div className="flex flex-row">
                                 <img
                                   src={cumRap.hinhAnh}
-                                  style={{ width: 60, height: 60 }}
+                                  className="w-16 h-16 md:w-16 md:h-24 sm:h-40"
                                   alt="..."
                                 />
                                 <div className="ml-2">
@@ -142,7 +146,7 @@ export default function Detail(props) {
                                       <NavLink
                                         to={`/checkout/${lichChieu.maLichChieu}`}
                                         key={index}
-                                        className="col-span-1 text-green-800 font-bold"
+                                        className="col-span-1 text-green-800 font-bold md:pb-5 sm:pb-5 sm:font-medium"
                                       >
                                         {moment(
                                           lichChieu.ngayChieuGioChieu
